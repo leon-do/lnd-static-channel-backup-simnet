@@ -108,7 +108,7 @@ bob creates invoice
 
 alice pays bob's invoice
 
-`./lncli-debug --rpcserver=localhost:10001 -no-macaroons sendpayment --pay_req=lnsb1230n1pwg42cdpp5e225zhkcl03rtsel3fx8yvt6zv2jvnzagevz54ukr6l2vu5xm8yqdqqcqzys69gx8mhugukpsfzc5z0h7uc2ykypznu777eu54punrxcld00atc4yss6tc4endy9z8rpnq8zpcuk0nc9mzmqmld24paw6r29vaepclsqjwka6h`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 -no-macaroons sendpayment --pay_req=lnsb1230n1pwg42cdpp5e225zhkcl03rtsel3fx8yvt6zv2jvnzagevz54ukr6l2vu5xm8yqdqqcqzys69gx8mhugukpsfzc5z0h7uc2ykypznu777eu54punrxcld00atc4yss6tc4endy9z8rpnq8zpcuk0nc9mzmqmld24paw6r29vaepclsqjwka6h`
 
 verify alice sent payment
 
@@ -188,6 +188,8 @@ https://wiki.ion.radar.tech/tech/research/static-channel-backups
 ```
 
 remove alice's wallet
+
+`alice$ rm -rf ./alice/*`
 
 restore alice's wallet
 
