@@ -36,7 +36,7 @@ generate address for alice
 
 restart btcd to mine to alice's address
 
-`btcd$ btcd --simnet --txindex --rpcuser=kek --rpcpass=kek --miningaddr=sb1qgnrsmwmwczpxagat27rkhrd996kvdnu4jhcy6f`
+`btcd$ btcd --simnet --txindex --rpcuser=kek --rpcpass=kek --miningaddr=rssZ8WH5N9jJvRdCHjkDwVfTDKo5GZdvK3`
 
 mine bitcoind
 
