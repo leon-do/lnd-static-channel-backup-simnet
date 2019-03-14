@@ -34,11 +34,11 @@ generate address for alice
 }
 ```
 
-restart btcd to mine to alice's address
+restart btcd to set mininig reward to alice's address
 
 `btcd$ btcd --simnet --txindex --rpcuser=kek --rpcpass=kek --miningaddr=rssZ8WH5N9jJvRdCHjkDwVfTDKo5GZdvK3`
 
-mine bitcoind
+mine bitcoin
 
 `alice$ btcctl --simnet --rpcuser=kek --rpcpass=kek generate 400`
 
