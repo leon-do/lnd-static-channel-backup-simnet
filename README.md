@@ -1,4 +1,4 @@
-works when cd to this directory
+lnd complied from https://github.com/Roasbeef/lnd/tree/static-chan-backups
 
 `$ cd static-chan-backup`
 
