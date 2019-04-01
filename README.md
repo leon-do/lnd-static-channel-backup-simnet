@@ -12,7 +12,7 @@ start alice's lnd
 
 create alice's wallet
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 --no-macaroons create`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 create`
 
 ```
 ---------------BEGIN LND CIPHER SEED---------------
