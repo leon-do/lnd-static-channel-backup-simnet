@@ -8,7 +8,7 @@ install btcd https://github.com/btcsuite/btcd
 
 start alice's lnd
 
-`alice$ ./lnd-debug --rpclisten=localhost:10001 --listen=localhost:10011 --restlisten=localhost:8001 --datadir=./alice --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --no-macaroons --configfile=./alice`
+`alice$ ./lnd-debug --rpclisten=localhost:10001 --listen=localhost:10011 --restlisten=localhost:8001 --datadir=./alice --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --configfile=./alice`
 
 create alice's wallet
 
@@ -27,7 +27,7 @@ create alice's wallet
 
 generate address for alice
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 --no-macaroons newaddress np2wkh`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 newaddress np2wkh`
 ```
 {
     "address": "rssZ8WH5N9jJvRdCHjkDwVfTDKo5GZdvK3"
@@ -44,7 +44,7 @@ mine bitcoin
 
 check alice's balance
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 --no-macaroons walletbalance`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 walletbalance`
 ```
 {
     "total_balance": "1505000000000",
@@ -55,7 +55,7 @@ check alice's balance
 
 start bob's lnd
 
-`bob$ ./lnd-debug --rpclisten=localhost:10002 --listen=localhost:10012 --restlisten=localhost:8002 --datadir=./bob --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --no-macaroons --configfile=./alice`
+`bob$ ./lnd-debug --rpclisten=localhost:10002 --listen=localhost:10012 --restlisten=localhost:8002 --datadir=./bob --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --configfile=./alice`
 
 create bob's wallet
 
