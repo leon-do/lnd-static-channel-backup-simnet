@@ -8,7 +8,7 @@ install btcd https://github.com/btcsuite/btcd
 
 start alice's lnd
 
-`alice$ ./lnd-debug --rpclisten=localhost:10001 --listen=localhost:10011 --restlisten=localhost:8001 --datadir=./alice --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --no-macaroons`
+`alice$ ./lnd-debug --rpclisten=localhost:10001 --listen=localhost:10011 --restlisten=localhost:8001 --datadir=./alice --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --no-macaroons --configfile=./alice`
 
 create alice's wallet
 
@@ -55,7 +55,7 @@ check alice's balance
 
 start bob's lnd
 
-`bob$ ./lnd-debug --rpclisten=localhost:10002 --listen=localhost:10012 --restlisten=localhost:8002 --datadir=./bob --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --no-macaroons`
+`bob$ ./lnd-debug --rpclisten=localhost:10002 --listen=localhost:10012 --restlisten=localhost:8002 --datadir=./bob --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --no-macaroons --configfile=./alice`
 
 create bob's wallet
 
