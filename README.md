@@ -27,7 +27,7 @@ create alice's wallet
 
 generate address for alice
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 newaddress np2wkh`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon newaddress np2wkh`
 ```
 {
     "address": "rssZ8WH5N9jJvRdCHjkDwVfTDKo5GZdvK3"
@@ -44,7 +44,7 @@ mine bitcoin
 
 check alice's balance
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 walletbalance`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon walletbalance`
 ```
 {
     "total_balance": "1505000000000",
@@ -55,11 +55,11 @@ check alice's balance
 
 start bob's lnd
 
-`bob$ ./lnd-debug --rpclisten=localhost:10002 --listen=localhost:10012 --restlisten=localhost:8002 --datadir=./bob --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --configfile=./alice`
+`bob$ ./lnd-debug --rpclisten=localhost:10002 --listen=localhost:10012 --restlisten=localhost:8002 --datadir=./bob --bitcoin.simnet --bitcoin.active --bitcoin.node=btcd --btcd.rpcuser=kek --btcd.rpcpass=kek --configfile=./bob`
 
 create bob's wallet
 
-`bob$ ./lncli-debug --rpcserver=localhost:10002 --no-macaroons create`
+`bob$ ./lncli-debug --rpcserver=localhost:10002 --macaroonpath=./bob/chain/bitcoin/simnet/ create`
 
 ```
 ---------------BEGIN LND CIPHER SEED---------------
@@ -74,30 +74,30 @@ create bob's wallet
 
 get bob's pubkey
 
-`bob$ ./lncli-debug --rpcserver=localhost:10002 -no-macaroons getinfo`
+`bob$ ./lncli-debug --rpcserver=localhost:10002 --macaroonpath=./bob/chain/bitcoin/simnet/admin.macaroon getinfo`
 ```
 {
 	"version": "0.5.2-99-beta commit=",
-	"identity_pubkey": "02ec2d48da0f83bb44368aa11dbf304a1ba5abd68c4fb9eaa9f61e6f0dca0b72b1",
+	"identity_pubkey": "026e59e2f7c0411adade454359901c7ad73222e09e4eaabb7c18165b6cdf69ace7",
   ...
 }
 ```
 
 connect alice to bob
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 -no-macaroons connect 02ec2d48da0f83bb44368aa11dbf304a1ba5abd68c4fb9eaa9f61e6f0dca0b72b1@localhost:10012`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon connect 026e59e2f7c0411adade454359901c7ad73222e09e4eaabb7c18165b6cdf69ace7@localhost:10012`
 
 open channel with bob
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 -no-macaroons openchannel --node_key=02ec2d48da0f83bb44368aa11dbf304a1ba5abd68c4fb9eaa9f61e6f0dca0b72b1 --local_amt=123456`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon openchannel --node_key=026e59e2f7c0411adade454359901c7ad73222e09e4eaabb7c18165b6cdf69ace7 --local_amt=123456`
 
 mine blocks so channel is valid
 
-`alice$ btcctl --simnet --rpcuser=kek --rpcpass=kek generate 6`
+`btcd$ btcctl --simnet --rpcuser=kek --rpcpass=kek generate 6`
 
 bob creates invoice
 
-`bob$ ./lncli-debug --rpcserver=localhost:10002 -no-macaroons addinvoice --amt=123`
+`bob$ ./lncli-debug --rpcserver=localhost:10002 --macaroonpath=./bob/chain/bitcoin/simnet/admin.macaroon addinvoice --amt=123`
 ```
 {
 	"r_hash": "ca95415ed8fbe235c33f8a4c72317a1315264c5d46582a57961ebea67286d9c8",
@@ -108,11 +108,11 @@ bob creates invoice
 
 alice pays bob's invoice
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 -no-macaroons sendpayment --pay_req=lnsb1230n1pwg42cdpp5e225zhkcl03rtsel3fx8yvt6zv2jvnzagevz54ukr6l2vu5xm8yqdqqcqzys69gx8mhugukpsfzc5z0h7uc2ykypznu777eu54punrxcld00atc4yss6tc4endy9z8rpnq8zpcuk0nc9mzmqmld24paw6r29vaepclsqjwka6h`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon sendpayment --pay_req=lnsb1230n1pwg42cdpp5e225zhkcl03rtsel3fx8yvt6zv2jvnzagevz54ukr6l2vu5xm8yqdqqcqzys69gx8mhugukpsfzc5z0h7uc2ykypznu777eu54punrxcld00atc4yss6tc4endy9z8rpnq8zpcuk0nc9mzmqmld24paw6r29vaepclsqjwka6h`
 
 verify alice sent payment
 
-`$alice ./lncli-debug --rpcserver=localhost:10001 -no-macaroons listchannels`
+`$alice ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon listchannels`
 ```
 {
     "channels": [
@@ -144,7 +144,7 @@ verify alice sent payment
 
 verify bob recieved payment
 
-`$bob ./lncli-debug --rpcserver=localhost:10002 -no-macaroons listchannels`
+`$bob ./lncli-debug --rpcserver=localhost:10002 --macaroonpath=./bob/chain/bitcoin/simnet/admin.macaroon listchannels`
 ```
 {
   "channels": [
@@ -177,7 +177,7 @@ verify bob recieved payment
 
 https://wiki.ion.radar.tech/tech/research/static-channel-backups
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 -no-macaroons exportchanbackup --all`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon exportchanbackup --all`
 ```
 {
 	"chan_points": [
@@ -193,22 +193,22 @@ remove alice's wallet
 
 restore alice's wallet
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 --no-macaroons create`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon create`
 ```
 Input your 24-word mnemonic separated by spaces: absorb balcony live stuff sugar large south floor plunge turn ostrich lounge pear clump sun list add upgrade soldier food pretty advice amazing sock
 ```
 
 verify alice has an on-chain balance
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 --no-macaroons walletbalance`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon walletbalance`
 
 alice's channels are obviously gone
 
-`$alice ./lncli-debug --rpcserver=localhost:10001 --no-macaroons listchannels`
+`$alice ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon listchannels`
 
 restore alice's channel
 
-`$alice ./lncli-debug --rpcserver=localhost:10001 --no-macaroons restorechanbackup --multi_backup 3ee57e9e62d6a10fa37b92c8b612b783ebdfb94beeee8c8b72a2cc832c120d4338b337ad58403fc7bd8ec73ef78587a0369e123a9fa1263884336e01e6fb09e315307dee0d77b9edd3f55dddd325811f34ab381a6fc5152951ef5ed2d2ec9f3e4dd0a5cfe5ebeb838b728ff813f940a3c9f58fbde156d8d771984560f30ce078801513c3b0e81cab626c8ce181f4f32a97e06244a421c07d982cf725a4b472ce2b3f197defe71826e28ecf8d8d8ea5e770afebcf959afa09336d6c5fe22b18831f455a1987f86f7a4a5560648a490a83e458ca5611f1c871f5c5718d6c2887de79442d9288561192d5be3e2778ff549f9444cda38e4ba6bad62bb0b68e9aa4e74ebd9f0deeb473facfc82da967a0992b4a4a6d6502f69cfe0eb44a0371080513ab8b51179c0979cd72336328f500d6d65c010cbf8a36cbab22f45cc19a9ec84170468fe891eb89f73db5e0a6fcdbe1ec350e481288bda6b8300b7c6751b72da0b7b0c594640bb2be30333eb5dcf458bd546ce5dd3a248e4084179ed5a9a68243587e8ef8e7ca2097bd75c8ab3934fed6d7b497017f0052066781364d0ad849f369df495f793a9f`
+`$alice ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon restorechanbackup --multi_backup 3ee57e9e62d6a10fa37b92c8b612b783ebdfb94beeee8c8b72a2cc832c120d4338b337ad58403fc7bd8ec73ef78587a0369e123a9fa1263884336e01e6fb09e315307dee0d77b9edd3f55dddd325811f34ab381a6fc5152951ef5ed2d2ec9f3e4dd0a5cfe5ebeb838b728ff813f940a3c9f58fbde156d8d771984560f30ce078801513c3b0e81cab626c8ce181f4f32a97e06244a421c07d982cf725a4b472ce2b3f197defe71826e28ecf8d8d8ea5e770afebcf959afa09336d6c5fe22b18831f455a1987f86f7a4a5560648a490a83e458ca5611f1c871f5c5718d6c2887de79442d9288561192d5be3e2778ff549f9444cda38e4ba6bad62bb0b68e9aa4e74ebd9f0deeb473facfc82da967a0992b4a4a6d6502f69cfe0eb44a0371080513ab8b51179c0979cd72336328f500d6d65c010cbf8a36cbab22f45cc19a9ec84170468fe891eb89f73db5e0a6fcdbe1ec350e481288bda6b8300b7c6751b72da0b7b0c594640bb2be30333eb5dcf458bd546ce5dd3a248e4084179ed5a9a68243587e8ef8e7ca2097bd75c8ab3934fed6d7b497017f0052066781364d0ad849f369df495f793a9f`
 
 <hr>
 
