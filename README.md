@@ -23,6 +23,8 @@ create alice's wallet
 17. add     18. upgrade  19. soldier  20. food
 21. pretty  22. advice   23. amazing  24. sock
 ---------------END LND CIPHER SEED-----------------
+
+absorb balcony live stuff sugar large south floor plunge turn ostrich lounge pear clump sun list add upgrade soldier food pretty advice amazing sock
 ```
 
 generate address for alice
@@ -70,6 +72,8 @@ create bob's wallet
 17. month    18. gain     19. trip     20. unique
 21. invite   22. cactus   23. lift     24. inherit
 ---------------END LND CIPHER SEED-----------------
+
+above bomb sadnes brass galler chalk airpor fame float auctio guess net lava skill maple ankle month gain trip unique invite cactus lift inherit
 ```
 
 get bob's pubkey
