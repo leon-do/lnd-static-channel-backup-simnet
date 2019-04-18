@@ -23,6 +23,8 @@ create alice's wallet
 17. add     18. upgrade  19. soldier  20. food
 21. pretty  22. advice   23. amazing  24. sock
 ---------------END LND CIPHER SEED-----------------
+
+absorb balcony live stuff sugar large south floor plunge turn ostrich lounge pear clump sun list add upgrade soldier food pretty advice amazing sock
 ```
 
 generate address for alice
