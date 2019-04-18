@@ -73,7 +73,7 @@ create bob's wallet
 21. invite   22. cactus   23. lift     24. inherit
 ---------------END LND CIPHER SEED-----------------
 
-above bomb sadnes brass galler chalk airpor fame float auctio guess net lava skill maple ankle month gain trip unique invite cactus lift inherit
+above bomb sadnes brass gallery chalk airport fame float auction guess net lava skill maple ankle month gain trip unique invite cactus lift inherit
 ```
 
 get bob's pubkey
