@@ -81,19 +81,19 @@ get bob's pubkey
 `bob$ ./lncli-debug --rpcserver=localhost:10002 --macaroonpath=./bob/chain/bitcoin/simnet/admin.macaroon getinfo`
 ```
 {
-	"version": "0.5.2-99-beta commit=",
-	"identity_pubkey": "026e59e2f7c0411adade454359901c7ad73222e09e4eaabb7c18165b6cdf69ace7",
+	"version": "0.6.0-beta commit=",
+	"identity_pubkey": "02ec2d48da0f83bb44368aa11dbf304a1ba5abd68c4fb9eaa9f61e6f0dca0b72b1",
   ...
 }
 ```
 
 connect alice to bob
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon connect 026e59e2f7c0411adade454359901c7ad73222e09e4eaabb7c18165b6cdf69ace7@localhost:10012`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon connect 02ec2d48da0f83bb44368aa11dbf304a1ba5abd68c4fb9eaa9f61e6f0dca0b72b1@localhost:10012`
 
 open channel with bob
 
-`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon openchannel --node_key=026e59e2f7c0411adade454359901c7ad73222e09e4eaabb7c18165b6cdf69ace7 --local_amt=123456`
+`alice$ ./lncli-debug --rpcserver=localhost:10001 --macaroonpath=./alice/chain/bitcoin/simnet/admin.macaroon openchannel --node_key=02ec2d48da0f83bb44368aa11dbf304a1ba5abd68c4fb9eaa9f61e6f0dca0b72b1 --local_amt=123456`
 
 mine blocks so channel is valid
 
